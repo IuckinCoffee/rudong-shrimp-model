@@ -4,7 +4,7 @@
   项目记忆 / PROJECT MEMORY  —— 供下个记忆体（AI）接续使用，请勿删除
 --------------------------------------------------------------------------------
   项目名称：小棚虾 成本利润测算模型（租棚模式，如东基准）
-  当前版本：2026-11-25（日期制，同一天第二版起加 _V2）
+  当前版本：2026-11-25_V2（日期制，同一天第二版起加 _V2）
   唯一权威位置：本仓库根目录（与 README.md 同级）
      ├─ 如东小棚虾成本利润测算.html   ← 单文件工具（无外部依赖，双击即用）
      ├─ README.md                     ← 项目说明 / 成本分析全文 / 数据来源
@@ -37,7 +37,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>小棚虾 · 成本利润测算 v2026-11-25</title>
+<title>小棚虾 · 成本利润测算 v2026-11-25_V2</title>
 <style>
 :root{
   --bg:#0a0e13; --panel:#111821; --panel2:#161f29; --line:#233040; --line2:#2c3b4d;
@@ -185,7 +185,7 @@ input[readonly]{color:#8fa0b2;background:#0a1017;cursor:default}
 .kpi .v{font-size:21px;font-weight:660;letter-spacing:-.4px;font-variant-numeric:tabular-nums;margin-top:3px;line-height:1.2}
 .kpi .s{font-size:10.5px;color:var(--dim);margin-top:2px}
 .pos{color:var(--red)} .neg{color:var(--green)}
-.strip{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:12px;background:rgba(17,24,33,.7);margin-bottom:16px;overflow:hidden}
+.strip{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:12px;background:rgba(17,24,33,.7);margin-bottom:16px;overflow:hidden}
 .strip div{padding:11px 13px;border-right:1px solid var(--line)}
 .strip div:last-child{border-right:0}
 .strip .k{font-size:10px;color:var(--dim);letter-spacing:.3px}
@@ -278,7 +278,8 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
 @media (max-width:1220px){
   .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .strip{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .strip div:nth-child(3){border-right:0}
+  .strip div:nth-child(3n){border-right:0}
+  .strip div:nth-child(3n+1):not(:first-child){border-top:1px solid var(--line)}
   .grid2{grid-template-columns:1fr}
 }
 @media (max-width:920px){
@@ -295,7 +296,7 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
   <div class="brand">
     <div class="mark">虾</div>
     <div>
-      <h1>小棚虾 · 成本利润测算 <span class="ver">v2026-11-25</span></h1>
+      <h1>小棚虾 · 成本利润测算 <span class="ver">v2026-11-25_V2</span></h1>
       <p>租棚模式 / 风险调整 / 保本与敏感性</p>
     </div>
   </div>
@@ -474,6 +475,7 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
         <div><div class="k">有效棚 / 总棚</div><div class="v" id="sOk">—</div></div>
         <div><div class="k">总出虾量</div><div class="v" id="sYield">—</div></div>
         <div><div class="k">单棚均产</div><div class="v" id="sPer">—</div></div>
+        <div><div class="k">单棚成本</div><div class="v" id="sCost">—</div></div>
         <div><div class="k">折合亩产</div><div class="v" id="sMu">—</div></div>
         <div><div class="k">综合均价</div><div class="v" id="sAvgP">—</div></div>
         <div><div class="k">一棚失败≈需</div><div class="v" id="sCover">—</div></div>
@@ -716,7 +718,7 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
       <div class="mem">
         <h2>项目档案</h2>
         <pre>项目名：小棚虾 成本利润测算模型
-版本：2026-11-25（日期制）
+版本：2026-11-25_V2（日期制）
 位置：仓库根目录
   ├─ 如东小棚虾成本利润测算.html   单文件工具，双击浏览器打开
   ├─ README.md                     项目说明、成本分析全文、数据来源
@@ -763,7 +765,8 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
 
         <h2>更新记录</h2>
         <ul>
-          <li><b>2026-11-25（当前）</b>：品牌名去掉“如东”（左上角改为“小棚虾 · 成本利润测算”），标题栏加日期版本号徽标；版本号改为日期制，同日多版加 _V2。</li>
+          <li><b>2026-11-25_V2（当前）</b>：指标条新增「单棚成本」（紧跟单棚均产），按总成本 ÷ 棚数计，含失败棚摊销，随单茬/全年口径联动；窄屏指标条改为 3 列并补齐行分隔线。</li>
+          <li><b>2026-11-25</b>：品牌名去掉“如东”（左上角改为“小棚虾 · 成本利润测算”），标题栏加日期版本号徽标；版本号改为日期制，同日多版加 _V2。</li>
           <li><b>v1.2 2026-11-25</b>：新增「单茬 / 全年」口径开关，KPI、成本表与图表全部跟随切换，全年口径下棚租不重复分摊；成本表与卡片标题标明口径；单棚面积误填棚长（&lt; 80㎡）时亩产提示核对。</li>
           <li><b>v1.1 2026-11-25</b>：新增按㎡/按棚长/年租三种计租口径（含换算提示）；新增锅炉模块（燃煤/生物质/天然气/电/直接填）与燃料成本核算；项目迁入独立仓库；补充项目记忆注释与本备忘页。</li>
           <li><b>v1.0 2026-11-25</b>：初版。参数录入、成本拆解、失败棚模型、盈亏平衡、敏感性矩阵、成本分析全文。</li>
@@ -1167,6 +1170,7 @@ function renderKPI(m){
   $('sOk').textContent = m.okCount + ' / ' + S.sheds + ' 棚';
   $('sYield').textContent = fmt0(m.totalYield) + ' 斤';
   $('sPer').textContent = fmt0(m.totalYield/S.sheds) + ' 斤';
+  $('sCost').textContent = '¥' + fmt0(m.cost/S.sheds);
   $('sMu').textContent = S.area < 80
     ? '—（面积待核）'
     : fmt0(m.totalYield / (S.sheds * S.area/667)) + ' 斤';
