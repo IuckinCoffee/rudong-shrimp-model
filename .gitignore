@@ -4,3 +4,4 @@ Thumbs.db
 *.tmp
 dist/
 .idea/
+_*.html

@@ -4,7 +4,7 @@
   项目记忆 / PROJECT MEMORY  —— 供下个记忆体（AI）接续使用，请勿删除
 --------------------------------------------------------------------------------
   项目名称：小棚虾 成本利润测算模型（租棚模式，如东基准）
-  当前版本：2026-11-25_V2（日期制，同一天第二版起加 _V2）
+  当前版本：2026-11-26（日期制，同一天第二版起加 _V2）
   唯一权威位置：本仓库根目录（与 README.md 同级）
      ├─ 如东小棚虾成本利润测算.html   ← 单文件工具（无外部依赖，双击即用）
      ├─ README.md                     ← 项目说明 / 成本分析全文 / 数据来源
@@ -37,7 +37,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>小棚虾 · 成本利润测算 v2026-11-25_V2</title>
+<title>小棚虾 · 成本利润测算 v2026-11-26</title>
 <style>
 :root{
   --bg:#0a0e13; --panel:#111821; --panel2:#161f29; --line:#233040; --line2:#2c3b4d;
@@ -296,7 +296,7 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
   <div class="brand">
     <div class="mark">虾</div>
     <div>
-      <h1>小棚虾 · 成本利润测算 <span class="ver">v2026-11-25_V2</span></h1>
+      <h1>小棚虾 · 成本利润测算 <span class="ver">v2026-11-26</span></h1>
       <p>租棚模式 / 风险调整 / 保本与敏感性</p>
     </div>
   </div>
@@ -317,7 +317,7 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
 
     <div class="card">
       <h3>规模与茬次 <span>Scale</span></h3>
-      <div class="f"><label>小棚数量 <span class="u">张</span></label><input type="number" id="sheds" value="20" min="1" max="300" step="1"></div>
+      <div class="f"><label>小棚数量 <span class="u">张</span></label><input type="number" id="sheds" value="40" min="1" max="300" step="1"></div>
       <div class="f"><label>年养殖茬数 <span class="u">茬</span></label><input type="number" id="crops" value="2" min="1" max="3" step="1"></div>
       <div class="hint">如东标准棚多为 40–50 米长、单棚 350–500㎡（0.5–0.75 亩）。棚租按年计，工具会自动按茬数分摊。</div>
     </div>
@@ -325,17 +325,17 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
     <div class="card">
       <h3>棚租核算 <span>Rent</span></h3>
       <div class="seg" id="rentSeg">
-        <button data-rent="sqm" class="on">按㎡</button>
+        <button data-rent="sqm">按㎡</button>
         <button data-rent="meter">按棚长</button>
-        <button data-rent="total">年租</button>
+        <button data-rent="total" class="on">年租</button>
       </div>
       <div class="f"><label>单棚面积 <span class="u">㎡</span></label><input type="number" id="area" value="400" min="50" max="3000" step="10"></div>
-      <div class="f rent-sqm"><label>单平米租价 <span class="u">元/㎡/年</span></label><input type="number" id="sqmPrice" value="12.5" min="0" max="200" step="0.5"></div>
+      <div class="f rent-sqm"><label>单平米租价 <span class="u">元/㎡/年</span></label><input type="number" id="sqmPrice" value="25" min="0" max="200" step="0.5"></div>
       <div class="f rent-meter"><label>棚长 <span class="u">米</span></label><input type="number" id="shedLen" value="40" min="10" max="120" step="0.5"></div>
-      <div class="f rent-meter"><label>每米租金 <span class="u">元/米/年</span></label><input type="number" id="meterPrice" value="125" min="0" max="800" step="5"></div>
-      <div class="f"><label>年租金 <span class="u">元/棚/年</span></label><input type="number" id="rent" value="5000" min="0" max="50000" step="100"></div>
+      <div class="f rent-meter"><label>每米租金 <span class="u">元/米/年</span></label><input type="number" id="meterPrice" value="250" min="0" max="800" step="5"></div>
+      <div class="f"><label>年租金 <span class="u">元/棚/年</span></label><input type="number" id="rent" value="10000" min="0" max="50000" step="100"></div>
       <div class="calcbox" id="rentCalc"></div>
-      <div class="hint" style="margin:0">如东棚租报价三种口径互通：按㎡（12–25 元/㎡/年）、按棚长（100–320 元/米/年）、按棚整租（3000–8000 元/棚/年）。按㎡ 或按米时年租金自动算，切到“年租”可手填总价。<b style="color:#e2b45a">单棚面积填 350–500㎡（是面积，不是棚长米数）。</b></div>
+      <div class="hint" style="margin:0">如东棚租报价三种口径互通：按㎡（12–25 元/㎡/年）、按棚长（100–320 元/米/年）、按棚整租（4000–12000 元/棚/年，视棚况与位置）。按㎡ 或按米时年租金自动算，切到“年租”可手填总价。<b style="color:#e2b45a">单棚面积填 350–500㎡（是面积，不是棚长米数）。</b></div>
     </div>
 
     <div class="card">
@@ -344,8 +344,8 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
       <div class="f"><label>苗价 <span class="u">元/万尾</span></label><input type="number" id="seedPrice" value="130" min="30" max="400" step="5"></div>
       <div class="f"><label>回捕率（成活率）<span class="u">%</span></label><input type="number" id="surv" value="72" min="10" max="100" step="1"></div>
       <div class="f"><label>出虾规格 <span class="u">尾/斤</span></label><input type="number" id="size" value="30" min="10" max="120" step="1"></div>
-      <label class="chk"><input type="checkbox" id="manualOn"> 直接指定单棚产量（跳过放苗推算）</label>
-      <div class="f" id="manualWrap" style="display:none"><label>单棚目标产量 <span class="u">斤</span></label><input type="number" id="manualYield" value="1680" min="50" max="6000" step="10"></div>
+      <label class="chk"><input type="checkbox" id="manualOn" checked> 直接指定单棚产量（跳过放苗推算）</label>
+      <div class="f" id="manualWrap"><label>单棚目标产量 <span class="u">斤</span></label><input type="number" id="manualYield" value="2300" min="50" max="6000" step="10"></div>
       <div class="hint" id="yieldHint"></div>
     </div>
 
@@ -414,8 +414,8 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
       <div class="f"><label>折旧维修 <span class="u">元/棚/茬</span></label><input type="number" id="dep" value="600" min="0" max="4000" step="50"></div>
       <div class="f"><label>捕捞运输 <span class="u">元/斤</span></label><input type="number" id="harvest" value="0.5" min="0" max="3" step="0.05"></div>
       <div class="f"><label>杂费 <span class="u">元/棚/茬</span></label><input type="number" id="misc" value="300" min="0" max="5000" step="50"></div>
-      <div class="f"><label>资金年利率 <span class="u">%</span></label><input type="number" id="rate" value="6" min="0" max="24" step="0.5"></div>
-      <div class="f"><label>资金占用月数 <span class="u">月</span></label><input type="number" id="months" value="4" min="0" max="12" step="1"></div>
+      <div class="f"><label>资金年利率 <span class="u">%</span></label><input type="number" id="rate" value="0" min="0" max="24" step="0.5"></div>
+      <div class="f"><label>资金占用月数 <span class="u">月</span></label><input type="number" id="months" value="0" min="0" max="12" step="1"></div>
       <div class="hint">人工：1 人管 25–35 张棚、年薪 7–8 万，折 2000–3000 元/棚/年。租棚通常不含棚膜更换，折旧里已含。</div>
     </div>
 
@@ -560,33 +560,33 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
         </table>
         <div class="src">数据口径：海大农牧 2025 年秋虾塘头调研（如东通州湾 2100 斤/料比 1.1/成功率 70%；环农 1600 斤/1.2/80%；栟茶洋口 1900 斤/1.1/85%）；水产前沿、农财宝典公开报道。</div>
 
-        <h2>二、单棚单茬成本拆解（租棚、常温、亩产 1800 斤档）</h2>
-        <p>下面这张表是本工具的默认基准情景，棚租按 5000 元/棚/年、一年两茬折算，每棚每茬摊 2500 元。你没有自有棚，所以<b>棚租是纯现金流出，且不形成任何资产</b>，这是租棚模式与买棚模式最本质的差别。</p>
+        <h2>二、单棚单茬成本拆解（租棚、常温、单棚 2300 斤档）</h2>
+        <p>下面这张表是本工具的默认基准情景，棚租按 10000 元/棚/年、一年两茬折算，每棚每茬摊 5000 元。你没有自有棚，所以<b>棚租是纯现金流出，且不形成任何资产</b>，这是租棚模式与买棚模式最本质的差别。</p>
         <table>
           <thead><tr><th>成本项</th><th>元/棚/茬</th><th>元/斤</th><th>占比</th><th>驱动因素</th></tr></thead>
           <tbody>
-            <tr><td>饲料</td><td>9,470</td><td>5.64</td><td>53.0%</td><td>产量 × 料比 × 料价（9800 元/吨）</td></tr>
-            <tr><td>棚租</td><td>2,500</td><td>1.49</td><td>14.0%</td><td>年租金 ÷ 茬数，纯沉没</td></tr>
-            <tr><td>人工</td><td>1,200</td><td>0.71</td><td>6.7%</td><td>1 人管 25–35 棚，年薪 7–8 万</td></tr>
-            <tr><td>苗种</td><td>910</td><td>0.54</td><td>5.1%</td><td>7 万尾 × 130 元/万尾</td></tr>
-            <tr><td>电费</td><td>900</td><td>0.54</td><td>5.0%</td><td>增氧 24h、抽水、照明，0.6–0.8 元/度</td></tr>
-            <tr><td>捕捞运输</td><td>840</td><td>0.50</td><td>4.7%</td><td>抓虾工 + 冰块 + 水车，0.4–0.7 元/斤</td></tr>
-            <tr><td>动保药品</td><td>800</td><td>0.48</td><td>4.5%</td><td>消毒、改底、补菌、钙镁、抗应激</td></tr>
-            <tr><td>折旧维修</td><td>600</td><td>0.36</td><td>3.4%</td><td>棚膜 2–3 年一换、增氧机、水泵维修</td></tr>
-            <tr><td>资金成本</td><td>350</td><td>0.21</td><td>2.0%</td><td>6% 年化 × 4 个月占用</td></tr>
-            <tr><td>杂费</td><td>300</td><td>0.18</td><td>1.7%</td><td>检测、通讯、临时用工、押金机会成本</td></tr>
+            <tr><td>饲料</td><td>12,961</td><td>5.64</td><td>54.4%</td><td>2300 斤 × 料比 1.15 × 料价 9800 元/吨</td></tr>
+            <tr><td>棚租</td><td>5,000</td><td>2.17</td><td>21.0%</td><td>年租 10000 ÷ 2 茬，纯沉没</td></tr>
+            <tr><td>人工</td><td>1,200</td><td>0.52</td><td>5.0%</td><td>1 人管 30–40 棚，年薪 7–8 万</td></tr>
+            <tr><td>捕捞运输</td><td>1,150</td><td>0.50</td><td>4.8%</td><td>抓虾工 + 冰块 + 水车，0.5 元/斤</td></tr>
+            <tr><td>苗种</td><td>910</td><td>0.40</td><td>3.8%</td><td>7 万尾 × 130 元/万尾</td></tr>
+            <tr><td>电费</td><td>900</td><td>0.39</td><td>3.8%</td><td>增氧 24h、抽水、照明，0.6–0.8 元/度</td></tr>
+            <tr><td>动保药品</td><td>800</td><td>0.35</td><td>3.4%</td><td>消毒、改底、补菌、钙镁、抗应激</td></tr>
+            <tr><td>折旧维修</td><td>600</td><td>0.26</td><td>2.5%</td><td>棚膜 2–3 年一换、增氧机、水泵维修</td></tr>
+            <tr><td>杂费</td><td>300</td><td>0.13</td><td>1.3%</td><td>检测、通讯、临时用工、押金机会成本</td></tr>
+            <tr><td>资金成本</td><td>0</td><td>0.00</td><td>0%</td><td>本版默认不计息；填年利率与占用月数后自动加回</td></tr>
           </tbody>
-          <tfoot><tr><td>合计</td><td>17,870</td><td>10.64</td><td>100%</td><td>= 保本虾价约 10.6 元/斤（单棚口径）</td></tr></tfoot>
+          <tfoot><tr><td>合计</td><td>23,821</td><td>10.36</td><td>100%</td><td>= 正常棚保本虾价约 10.4 元/斤</td></tr></tfoot>
         </table>
         <div class="callout warn">
           <span class="tt">注意口径陷阱</span>
-          很多人算成本只算到 9–10 元/斤，那是<b>不含失败棚摊销</b>的数字。按 80% 成功率摊下来，实际每斤成本会抬到 <b>11.5–12 元/斤</b>——因为失败棚的苗、料、电、租金一分不少，却几乎没有产出。工具里“斤虾成本”用的是含失败摊销的总成本口径，这才是真实的保本线。
+          很多人算成本只算到 9–10 元/斤，那是<b>不含失败棚摊销</b>的数字。按 80% 成功率摊下来，实际每斤成本会抬到 <b>11.6–11.7 元/斤</b>（本例 11.65）——因为失败棚的苗、料、电、租金一分不少，却几乎没有产出。工具里“斤虾成本”用的是含失败摊销的总成本口径，这才是真实的保本线。
         </div>
 
         <h2>三、六个成本项的深挖</h2>
 
         <h3>1. 饲料：唯一能靠管理省出大钱的项目</h3>
-        <p>饲料占 50% 上下，是绝对的胜负手。按 1680 斤产量、9800 元/吨计算，<b>料比每降低 0.1，单棚省 823 元</b>；料比从 1.25 压到 1.10，一棚省 1,230 元，20 棚就是 2.5 万。如东实测：投料机投喂 2160 斤出虾 1990 斤、料比 1.08；人工投喂 1970 斤出虾 1690 斤、料比 1.16——同一批苗、同一个塘口，机器比人工单棚多赚 9,682 元（含规格大 2 头带来的 2.8 元/斤价差）。</p>
+        <p>饲料占 50% 上下，是绝对的胜负手。按 2300 斤产量、9800 元/吨计算，<b>料比每降低 0.1，单棚省 1,127 元</b>；料比从 1.25 压到 1.10，一棚省 1,690 元，40 棚就是 6.8 万。如东实测：投料机投喂 2160 斤出虾 1990 斤、料比 1.08；人工投喂 1970 斤出虾 1690 斤、料比 1.16——同一批苗、同一个塘口，机器比人工单棚多赚 9,682 元（含规格大 2 头带来的 2.8 元/斤价差）。</p>
         <p>但要注意：料比不是越低越好，压料过猛会拖慢长速、推迟上市，反而撞上低价窗口。<b>料比控制在 1.1–1.15，比追求 1.0 更划算。</b></p>
 
         <h3>2. 棚租：租棚模式最大的固定负担，也是当前最大的机会</h3>
@@ -630,7 +630,7 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
 
         <h3>6. 隐性成本：报价单上看不到的</h3>
         <ul>
-          <li><b>押金与预付</b>：租金常需年付或押一付一，20 棚按 5000 元计就是 10 万现金占用。</li>
+          <li><b>押金与预付</b>：租金常需年付或押一付一，40 棚按 10000 元计就是 40 万现金占用。</li>
           <li><b>尾水与环保</b>：江苏尾水排放监管趋严，沉淀池、尾水处理设施可能带来额外分摊。</li>
           <li><b>检测费</b>：苗种、水体、孢子虫检测，一茬几百到上千元。</li>
           <li><b>赊销利息</b>：饲料赊账通常加价 3–8%，比银行贷款贵得多。</li>
@@ -638,17 +638,17 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
         </ul>
 
         <h2>四、盈亏平衡：什么价格、什么成功率才能活</h2>
-        <p>把上面的成本结构代进去，可以得出一个很清晰的生存边界（按棚租 5000 元/年、两茬、单棚正常产量 1680 斤、失败棚成本按 50% 计）：</p>
+        <p>把上面的成本结构代进去，可以得出一个很清晰的生存边界（按棚租 10000 元/年、两茬、单棚正常产量 2300 斤、失败棚成本按 50% 计）：</p>
         <table>
           <thead><tr><th>虾价（元/斤）</th><th>成功率 60%</th><th>70%</th><th>80%</th><th>90%</th></tr></thead>
           <tbody>
-            <tr><td>12</td><td>-2,716</td><td>-1,464</td><td>-212</td><td>+1,041</td></tr>
-            <tr><td>14</td><td>-700</td><td>+888</td><td>+2,476</td><td>+4,065</td></tr>
-            <tr><td>16</td><td>+1,316</td><td>+3,240</td><td>+5,164</td><td>+7,089</td></tr>
-            <tr><td>18</td><td>+3,332</td><td>+5,592</td><td>+7,852</td><td>+10,113</td></tr>
-            <tr><td>20</td><td>+5,348</td><td>+7,944</td><td>+10,540</td><td>+13,137</td></tr>
+            <tr><td>12</td><td>-3,270</td><td>-1,508</td><td>+255</td><td>+2,017</td></tr>
+            <tr><td>14</td><td>-510</td><td>+1,712</td><td>+3,935</td><td>+6,157</td></tr>
+            <tr><td>16</td><td>+2,250</td><td>+4,932</td><td>+7,615</td><td>+10,297</td></tr>
+            <tr><td>18</td><td>+5,010</td><td>+8,152</td><td>+11,295</td><td>+14,437</td></tr>
+            <tr><td>20</td><td>+7,770</td><td>+11,372</td><td>+14,975</td><td>+18,577</td></tr>
           </tbody>
-          <tfoot><tr><td>单棚净利（元）</td><td colspan="4">保本虾价约 12.2 元/斤（80% 成功率口径）；虾价每涨 1 元，单棚多赚约 1,680 元</td></tr></tfoot>
+          <tfoot><tr><td>单棚净利（元）</td><td colspan="4">保本虾价约 11.9 元/斤（80% 成功率口径）；虾价每涨 1 元，单棚多赚约 1,840 元</td></tr></tfoot>
         </table>
         <p>三条硬结论：</p>
         <ul>
@@ -677,7 +677,7 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
           <li><b>集中上市</b>：江苏 25 万张棚的放苗窗口高度重叠，出虾期一旦撞车，价格一天掉 1–2 元。</li>
           <li><b>租金波动</b>：行情好时租金一年翻倍，租棚模式没有锁价保护，建议签 2–3 年。</li>
           <li><b>尾水环保</b>：监管趋严，部分不合格园区可能被清退，接棚前务必确认手续。</li>
-          <li><b>资金链</b>：20 棚单茬现金投入约 35 万，叠加租金预付，实际占用更高，务必留足 30% 备用金。</li>
+          <li><b>资金链</b>：40 棚单茬现金投入约 89 万，叠加租金预付，实际占用更高，务必留足 30% 备用金。</li>
         </ul>
 
         <div class="src">说明：以上为行业调研区间与典型值，用于测算与决策参考，不等于任何单个塘口的实际结果。虾价、苗价、料价随时段与区域波动，请以当期塘头报价替换。</div>
@@ -689,7 +689,7 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
       <div class="prose">
         <h2>计算口径</h2>
         <h3>产量</h3>
-        <p>单棚正常产量 = 放苗量（万尾）× 10000 × 回捕率 ÷ 出虾规格（尾/斤）。例如 7 万尾、72%、30 头 → 7×10000×0.72÷30 = <span class="num">1,680 斤</span>。也可勾选“直接指定产量”跳过推算。</p>
+        <p>单棚正常产量 = 放苗量（万尾）× 10000 × 回捕率 ÷ 出虾规格（尾/斤）。例如 7 万尾、72%、30 头 → 7×10000×0.72÷30 = <span class="num">1,680 斤</span>。默认情景已改为直接指定 2300 斤（跳过推算），需要按苗量反推时取消勾选即可。</p>
         <h3>成本</h3>
         <p>饲料 = 产量 × 料比 ×（饲料单价 ÷ 2000）；苗种 = 放苗量 × 苗价；捕捞运输 = 产量 × 元/斤；资金成本 =（其余成本合计）× 年利率 × 占用月数 ÷ 12。</p>
         <h3>棚租</h3>
@@ -718,7 +718,7 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
       <div class="mem">
         <h2>项目档案</h2>
         <pre>项目名：小棚虾 成本利润测算模型
-版本：2026-11-25_V2（日期制）
+版本：2026-11-26（日期制）
 位置：仓库根目录
   ├─ 如东小棚虾成本利润测算.html   单文件工具，双击浏览器打开
   ├─ README.md                     项目说明、成本分析全文、数据来源
@@ -765,7 +765,8 @@ table.t .dot{width:7px;height:7px;border-radius:2px;flex:0 0 7px}
 
         <h2>更新记录</h2>
         <ul>
-          <li><b>2026-11-25_V2（当前）</b>：指标条新增「单棚成本」（紧跟单棚均产），按总成本 ÷ 棚数计，含失败棚摊销，随单茬/全年口径联动；窄屏指标条改为 3 列并补齐行分隔线。</li>
+          <li><b>2026-11-26（当前）</b>：默认参数换成实际接棚口径（40 棚 / 年租 10000 / 2300 斤 / 成功率 80% / 不计资金成本，计租默认“年租”）；分析页成本拆解与敏感度矩阵按新默认重算。</li>
+          <li><b>2026-11-25_V2</b>：指标条新增「单棚成本」（紧跟单棚均产），按总成本 ÷ 棚数计，含失败棚摊销，随单茬/全年口径联动；窄屏指标条改为 3 列并补齐行分隔线。</li>
           <li><b>2026-11-25</b>：品牌名去掉“如东”（左上角改为“小棚虾 · 成本利润测算”），标题栏加日期版本号徽标；版本号改为日期制，同日多版加 _V2。</li>
           <li><b>v1.2 2026-11-25</b>：新增「单茬 / 全年」口径开关，KPI、成本表与图表全部跟随切换，全年口径下棚租不重复分摊；成本表与卡片标题标明口径；单棚面积误填棚长（&lt; 80㎡）时亩产提示核对。</li>
           <li><b>v1.1 2026-11-25</b>：新增按㎡/按棚长/年租三种计租口径（含换算提示）；新增锅炉模块（燃煤/生物质/天然气/电/直接填）与燃料成本核算；项目迁入独立仓库；补充项目记忆注释与本备忘页。</li>
@@ -808,13 +809,13 @@ const COSTS = [
 ];
 
 const DEFAULTS = {
-  sheds:20, crops:2, area:400, view:'crop',
-  rentMode:'sqm', sqmPrice:12.5, shedLen:40, meterPrice:125, rent:5000,
-  stock:7, seedPrice:130, surv:72, size:30, manual:false, manualYield:1680,
+  sheds:40, crops:2, area:400, view:'crop',
+  rentMode:'total', sqmPrice:25, shedLen:40, meterPrice:250, rent:10000,
+  stock:7, seedPrice:130, surv:72, size:30, manual:true, manualYield:2300,
   mode:'unified', succ:80, failYieldPct:15, failCostPct:50, failPrice:6,
   price:17.5, fcr:1.15, feedPrice:9800, power:900,
   heatMode:'none', fuelPrice:950, fuelQty:2.2, boilerRent:0, heatManual:2000, heat:0,
-  med:800, labor:1200, dep:600, harvest:0.5, misc:300, rate:6, months:4
+  med:800, labor:1200, dep:600, harvest:0.5, misc:300, rate:0, months:0
 };
 
 const FUELS = {
@@ -868,7 +869,7 @@ function readState(){
   S.surv    = clamp(num($('surv'), 72), 1, 100);
   S.size    = clamp(num($('size'), 30), 8, 200);
   S.manual  = $('manualOn').checked;
-  S.manualYield = clamp(num($('manualYield'), 1680), 10, 8000);
+  S.manualYield = clamp(num($('manualYield'), 2300), 10, 8000);
   S.succ    = clamp(num($('succ'), 80), 0, 100);
   S.failYieldPct = clamp(num($('failYieldPct'), 15), 0, 100);
   S.failCostPct  = clamp(num($('failCostPct'), 50), 0, 100);
