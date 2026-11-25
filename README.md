@@ -121,6 +121,10 @@ HTML 文件头部有一段 `PROJECT MEMORY` 注释，`维护备忘` 页签有同
 
 **前提**：仓库已设为 Public（私有仓库开 Pages 需 GitHub Pro）。Pages 站点本身是公开的，拿到链接的人都能打开。
 
+**部署失败排查**：若 Actions 里 `pages-build-deployment` 的 build 成功但 deploy 报
+`Failed to create deployment (status: 500)`，这是 GitHub 侧临时故障，隔几分钟重新推送一次即可（空提交也行）；
+失败期间线上仍是上一个成功版本，不会 404。
+
 **同步规则（重要）**：修改主 HTML 后，必须执行
 
 ```bash

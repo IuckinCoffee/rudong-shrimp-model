@@ -113,6 +113,23 @@ render()      rAF 去抖后统一调度所有渲染函数
 4. 更新 HTML 头部注释的版本号与日期 + 「维护备忘」页签 + 本文件「更新记录」
 5. 不要删除 localStorage 键：`rd_shrimp_v1`（上次状态）、`rd_shrimp_scenarios_v1`（方案库）
 
+## 6.5 部署排错：Pages 部署报 500
+
+现象：`pages build and deployment` 的 build 成功、deploy 失败，注解里写
+`Failed to create deployment (status: 500) ... is githubstatus.com reporting a Pages outage?`。
+这是 GitHub 侧创建部署接口的临时故障，与仓库内容、`docs/` 配置无关（同一次 push 里 build 产物是正常的）。
+
+处理：隔几分钟再触发一次即可，本次第 3 次成功。无需 token 的触发方式是空提交：
+
+```bash
+git commit --allow-empty -m "ci: 重试 Pages 部署"
+git push
+```
+
+判定是否真的生效：查 `https://api.github.com/repos/IuckinCoffee/rudong-shrimp-model/actions/runs?head_sha=<完整SHA>`
+的 `conclusion`，再用无头浏览器 `--dump-dom` 拉线上页面 grep 关键字段（不要只看首页截图，CDN 会有缓存）。
+失败期间旧版本仍在线，不会 404。
+
 ## 7. 更新记录
 
 - 2026-11-25_V2（当前）：指标条新增「单棚成本」（m.cost ÷ S.sheds，随口径联动）；strip 改 7 列，窄屏 3 列补 nth-child(3n+1) 分隔线。
